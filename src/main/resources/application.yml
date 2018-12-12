@@ -1,0 +1,23 @@
+#CONFIGURATIONS
+spring:
+  #APPLICATION
+  application:
+    name: angularspring
+    
+  #DATASOURCE
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/${spring.application.name}
+    username: postgres
+    password: postgres
+    
+  #JPA
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
