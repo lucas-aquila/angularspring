@@ -26,17 +26,17 @@ public class Categoria implements Serializable {
 	public Categoria() {
 	}
 
-	public Categoria(long codigo, String nome) {
+	public Categoria(Long codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 	}
 
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -46,10 +46,6 @@ public class Categoria implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
 	}
 
 	@Override
