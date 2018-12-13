@@ -2,6 +2,7 @@ package com.angularspring.api.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,9 +56,11 @@ public class CategoriaResource {
 	 */
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> findById(@PathVariable Long codigo) {
-		Categoria categoria = this.categoriaRepository.findById(codigo).get();
-		return ResponseEntity.ok().body(categoria);
-		
+		Optional<Categoria> categoria = this.categoriaRepository.findById(codigo);
+		if(!categoria.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok().body(categoria.get());
 	}
 
 }
