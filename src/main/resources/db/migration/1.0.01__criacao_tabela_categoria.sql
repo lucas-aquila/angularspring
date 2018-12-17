@@ -21,6 +21,8 @@ SET default_with_oids = false;
 -- Name: categoria; Type: TABLE; Schema: public; Owner: postgres
 --
 
+CREATE SCHEMA IF NOT EXISTS public;
+
 CREATE TABLE IF NOT EXISTS public.categoria (
     codigo bigint NOT NULL,
     nome character varying(255)
