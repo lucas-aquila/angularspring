@@ -70,10 +70,17 @@ public class PessoaResource {
 	}
 	
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Pessoa> update(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa){
+	public ResponseEntity<Pessoa> update(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa) {
 		Pessoa pessoaSalva = pessoaService.update(codigo, pessoa);
 
 		return ResponseEntity.ok(pessoaSalva);
+	}
+	
+	//Atualização Parcial
+	@PutMapping("/{codigo}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) {
+		pessoaService.updateAtivo(codigo, ativo);
 	}
 	
 

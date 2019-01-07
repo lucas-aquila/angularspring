@@ -20,4 +20,10 @@ public class PessoaService {
 		return pessoaRepository.save(pessoaSalva);
 	}
 
+	public void updateAtivo(Long codigo, Boolean ativo) {
+		Pessoa pessoaSalva = pessoaRepository.findById(codigo).get();
+		pessoaSalva.setAtivo(ativo);
+		pessoaRepository.save(pessoaSalva);
+	}
+
 }
