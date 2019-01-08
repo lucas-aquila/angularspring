@@ -1,7 +1,10 @@
 package com.angularspring.api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.angularspring.api.domain.Pessoa;
@@ -24,6 +27,15 @@ public class PessoaService {
 		Pessoa pessoaSalva = pessoaRepository.findById(codigo).get();
 		pessoaSalva.setAtivo(ativo);
 		pessoaRepository.save(pessoaSalva);
+	}
+
+	public Pessoa findById(Long codigo) {
+		Optional<Pessoa> pessoa = this.pessoaRepository.findById(codigo);
+		if(!pessoa.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		
+		return pessoa.get();
 	}
 
 }
