@@ -25,6 +25,7 @@ import com.angularspring.api.domain.Lancamento;
 import com.angularspring.api.event.RecursoCriadoEvent;
 import com.angularspring.api.exceptionhandler.AngularSpringExceptionHandler.Erro;
 import com.angularspring.api.repository.ILancamentoRepository;
+import com.angularspring.api.repository.filter.LancamentoFilter;
 import com.angularspring.api.service.LancamentoService;
 import com.angularspring.api.service.exception.PessoaInexistenteOuInativaException;
 
@@ -46,8 +47,8 @@ public class LancamentoResource {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Lancamento> listLancamentos() {
-		return lancamentoRepository.findAll();
+	public List<Lancamento> listLancamentos(LancamentoFilter lancamentoFilter) {
+		return lancamentoRepository.filtrar(lancamentoFilter);
 	}
 	
 	@GetMapping("/{codigo}")
