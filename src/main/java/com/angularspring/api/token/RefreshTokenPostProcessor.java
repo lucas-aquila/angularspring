@@ -16,9 +16,16 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+
+//Intercepta os controladores que retornam um OAuth2AccessToken
+//Corresponde ao método controlador que responde /oauth/token e retorna um OAuth2AccessToken
+//Porém ele irá interceptar todo método que retornar o OAuth2AccessToken
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken>{
 
+	
+	//Método que faz a regra, ou seja, o método beforeBodyWrite só vai ser chamado quando supports retornar um true.
+	//No caso, será chamado quando o nome do método for igual a postAccessToken
 	@Override
 	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
 		return returnType.getMethod().getName().equals("postAccessToken");
@@ -34,6 +41,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 		
 		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
 		
+		//Recupera no corpo da requisilção o refresh_token
 		String refreshToken = body.getRefreshToken().getValue();
 		adicionarRefreshTokenNoCookie(refreshToken, req, resp);
 		removerRefreshTokenDoBody(token);
