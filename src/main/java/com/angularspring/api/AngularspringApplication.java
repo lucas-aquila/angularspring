@@ -9,4 +9,5 @@ public class AngularspringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AngularspringApplication.class, args);
 	}
+	
 }
